@@ -4,14 +4,14 @@ const jwt = require("jsonwebtoken");
 
 const authMiddleware = async (req, res, next) => {
 	try {
-		const token = req.headers.authorization.split(" ")[1];
+		const token = req.headers.authorization?.split(" ")[1];
 		if (!token) {
 			return res.status(401).json({
 				message: "token not provided",
 				success: false
 			})
 		}
-		jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+		jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
 			if (err) {
 				return res.status(401).json({
 					message: "Unauthorized Access",

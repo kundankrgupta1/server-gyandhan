@@ -20,7 +20,7 @@ const regUser = async (req, res) => {
 		const hashPassword = bcrypt.hashSync(password, 10);
 		const newUser = new userModel({ name, email, password: hashPassword });
 		await newUser.save();
-		return res.status(201).json({
+		return res.status(200).json({
 			message: "User created successfully",
 			success: true
 		})

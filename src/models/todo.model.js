@@ -1,5 +1,10 @@
 const mongoose = require("mongoose")
 const todoSchema = mongoose.Schema({
+	author: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "User",
+		required: true
+	},
 	title: {
 		type: String,
 		required: true
@@ -11,7 +16,8 @@ const todoSchema = mongoose.Schema({
 	priority: {
 		type: String,
 		enum: ["low", "medium", "high"],
-		default: "low"
+		default: "low",
+		required: true
 	}
 }, { timestamps: true })
 
